@@ -17,6 +17,7 @@ void liberar_lista(Lista *l) {
 int inserir_item(Lista *l, char valor) {
   int pos = l->ultimo;
 
+  // enquanto houver espaço na lista
   if (pos < MAX) {
     l->v[pos] = valor;
 
@@ -30,16 +31,30 @@ int inserir_item(Lista *l, char valor) {
 }
 
 int remover_item(Lista *l, int pos) {
-  // TODO: implementar a remoção de elementos
-  printf("Não implementado!\n");
-  
-  return 0;
+  // posicao valida!
+  if (pos >= 0 && pos < l->ultimo) {
+    // posição atual. daqui pra frente eu preciso
+    // copiar os itens para trás
+    int atual = pos;
+
+    // copia os itens da posição da frente para a atual
+    while (atual < l->ultimo - 1) {
+      l->v[atual] = l->v[atual+1];
+      atual++;
+    }
+
+    // diminui o tamanho da lista
+    l->ultimo--;
+
+    return 0;
+  } else {
+    return -1;
+  }
 }
 
 char acessar_item(Lista *l, int pos) {
+  // posicao valida!
   if (pos >= 0 && pos < l->ultimo) {
-    // posicao valida!
-
     return l->v[pos];
   }
 
@@ -47,9 +62,8 @@ char acessar_item(Lista *l, int pos) {
 }
 
 int alterar_item(Lista *l, char valor, int pos) {
+  // posicao valida!
   if (pos >= 0 && pos < l->ultimo) {
-    // posicao valida!
-
     l->v[pos] = valor;
     return 0;
   } else {

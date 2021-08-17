@@ -36,6 +36,8 @@ int main(void) {
   }
 
   remover_item(l, 0);
+  remover_item(l, 2);
+  remover_item(l, 2);
 
   imprimir_lista(l);
 
