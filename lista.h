@@ -4,14 +4,14 @@
  *
 */
 
-#define MAX 100
+#define MAX 100000
 
 #define TRUE 1
 #define FALSE 0
 
 typedef struct _lista {
   char v[MAX];
-  int ultimo;
+  int quantidade;
 } Lista;
 
 Lista * criar_lista();

@@ -5,7 +5,7 @@
 Lista * criar_lista() {
   Lista *l = malloc(sizeof(Lista));
 
-  l->ultimo = 0;
+  l->quantidade = 0;
 
   return l;
 }
@@ -15,13 +15,13 @@ void liberar_lista(Lista *l) {
 }
 
 int inserir_item(Lista *l, char valor) {
-  int pos = l->ultimo;
+  int pos = l->quantidade;
 
   // enquanto houver espaço na lista
   if (pos < MAX) {
     l->v[pos] = valor;
 
-    l->ultimo++;
+    l->quantidade++;
 
     return 0;
   } else {
@@ -32,19 +32,19 @@ int inserir_item(Lista *l, char valor) {
 
 int remover_item(Lista *l, int pos) {
   // posicao valida!
-  if (pos >= 0 && pos < l->ultimo) {
+  if (pos >= 0 && pos < l->quantidade) {
     // posição atual. daqui pra frente eu preciso
     // copiar os itens para trás
     int atual = pos;
 
     // copia os itens da posição da frente para a atual
-    while (atual < l->ultimo - 1) {
+    while (atual < l->quantidade - 1) {
       l->v[atual] = l->v[atual+1];
       atual++;
     }
 
     // diminui o tamanho da lista
-    l->ultimo--;
+    l->quantidade--;
 
     return 0;
   } else {
@@ -54,7 +54,7 @@ int remover_item(Lista *l, int pos) {
 
 char acessar_item(Lista *l, int pos) {
   // posicao valida!
-  if (pos >= 0 && pos < l->ultimo) {
+  if (pos >= 0 && pos < l->quantidade) {
     return l->v[pos];
   }
 
@@ -63,7 +63,7 @@ char acessar_item(Lista *l, int pos) {
 
 int alterar_item(Lista *l, char valor, int pos) {
   // posicao valida!
-  if (pos >= 0 && pos < l->ultimo) {
+  if (pos >= 0 && pos < l->quantidade) {
     l->v[pos] = valor;
     return 0;
   } else {
@@ -72,11 +72,11 @@ int alterar_item(Lista *l, char valor, int pos) {
 }
 
 int quantidade_lista(Lista *l) {
-  return l->ultimo;
+  return l->quantidade;
 }
 
 int esta_cheia(Lista *l) {
-  if (l->ultimo == MAX) {
+  if (l->quantidade == MAX) {
     return TRUE;
   } else {
     return FALSE;
@@ -88,7 +88,7 @@ void imprimir_lista(Lista *l) {
 
   printf("[");
   
-  for (i = 0; i < l->ultimo; i++) {
+  for (i = 0; i < l->quantidade; i++) {
     printf(" %c ", l->v[i]);
   }
 
